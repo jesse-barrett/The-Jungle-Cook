@@ -1,0 +1,103 @@
+.home {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+      to right,
+      rgba(242, 92, 84, 0.7),
+      rgba(242, 92, 84, 0.7)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__bubbles {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+
+    &__big {
+      background-color: #ffd972;
+      width: 357.58px;
+      height: 357.58px;
+      border-radius: 500px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      &__title {
+        font-size: 24px;
+        font-family: Caveat-Bold;
+      }
+
+      &__text {
+        font-size: 12px;
+        width: 166px;
+        text-align: center;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+    }
+
+    &__small {
+      background-color: #fcbcb8;
+      width: 167.88px;
+      height: 167.88px;
+      border-radius: 300px;
+      position: absolute;
+      z-index: 0;
+      margin-left: 350px;
+      margin-top: -280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__text {
+        font-size: 10px;
+        width: 106px;
+        text-align: center;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .home {
+    &__bubbles {
+      &__small {
+        margin-left: 190px;
+        margin-top: -390px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .home {
+    &__bubbles {
+      width: 300px;
+      height: 300px;
+
+      &__big {
+        width: 257.81px;
+        height: 257.81px;
+      }
+      &__small {
+        width: 121.04px;
+        height: 121.04px;
+        margin-left: 150px;
+        margin-top: -280px;
+      }
+    }
+  }
+}
