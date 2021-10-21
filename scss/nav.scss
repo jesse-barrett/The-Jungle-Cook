@@ -1,3 +1,4 @@
+//nav styles
 .nav {
   width: 100%;
   height: 125px;
@@ -39,6 +40,45 @@
   }
 }
 
+//mobile nav animations
+@keyframes navIn {
+  from {
+    margin-top: -1200px;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+@keyframes navOut {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: -1200px;
+  }
+}
+//mobile nav styles
+.mobile-nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffd972;
+  z-index: 2;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  animation: navIn 0.7s ease;
+
+  &__link {
+    font-family: Caveat-Regular;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+  }
+}
+
+//media queries
 @media only screen and (max-width: 768px) {
   .nav {
     &__logo {

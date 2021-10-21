@@ -29,7 +29,7 @@ p {
   src: url(fonts/Caveat-Bold.ttf);
 }
 @font-face {
-  font-family: Gill;
+  font-family: Gill-Sans;
   src: url(fonts/GillSanas.ttf);
 }
 @font-face {
@@ -39,4 +39,19 @@ p {
 @font-face {
   font-family: Gill-Italic;
   src: url(fonts/GillSans-Italic.ttf);
+}
+
+.site-button {
+  background-color: #ffd972;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 100px;
+  height: 52px;
+  width: 152px;
+  text-align: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  font-family: Caveat-Regular;
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
 }
