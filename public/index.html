@@ -1,114 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>The Jungle Cook</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
 
-  <body>
-    <!-- NAVBAR -->
-    <nav class="nav">
-      <img class="nav__logo" src="img/logo.svg" alt="logo" />
-      <div class="nav__links">
-        <a href="#/home" class="nav__links__link">Home</a>
-        <a href="#/browse" class="nav__links__link">Browse</a>
-        <a href="#/create-recipe" class="nav__links__link">Create Recipe</a>
-        <a href="#/login" class="nav__links__link site-button">Login</a>
-      </div>
-      <!-- HAMBURGER MENU SHOULD ONLY BE VISIBLE ON 768PX OR LESS -->
-      <div class="nav__hamburger">
-        <svg width="31.33" height="20">
-          <rect width="31.33" height="2" rx="8"></rect>
-          <rect y="9" width="31.33" height="2" rx="8"></rect>
-          <rect y="18" width="31.33" height="2" rx="8"></rect>
-        </svg>
-      </div>
-    </nav>
-    <nav class="mobile-nav">
-      <a href="#/home" class="mobile-nav__link">Home</a>
-      <a href="#/browse" class="mobile-nav__link">Browse</a>
-      <a href="#/create-recipe" class="mobile-nav__link">Create Recipe</a>
-      <a href="#/login" class="mobile-nav__link">Login</a>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Jungle Cook</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-    <!-- BODY CONTENT -->
-    <!-- LOADED DYNAMICALLY WITH MVC -->
-    <div id="app"></div>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <img class="nav__logo" src="img/logo.svg" alt="logo" />
+    <div class="nav__links">
+      <a href="#/home" class="nav__links__link">Home</a>
+      <a href="#/browse" class="nav__links__link">Browse</a>
+      <a href="#/create-recipe" class="nav__links__link">Create Recipe</a>
+      <a href="#/your-recipes" id="yourRecipes" class="nav__links__link">Your Recipes</a>
+      <a href="#/login" id="loginNav" class="nav__links__link site-button">Login</a>
+      <a href="#/home" id="logoutNav" class="nav__links__link site-button">Logout</a>
+    </div>
+    <!-- HAMBURGER MENU SHOULD ONLY BE VISIBLE ON 768PX OR LESS -->
+    <div class="nav__hamburger">
+      <svg width="31.33" height="20">
+        <rect width="31.33" height="2" rx="8"></rect>
+        <rect y="9" width="31.33" height="2" rx="8"></rect>
+        <rect y="18" width="31.33" height="2" rx="8"></rect>
+      </svg>
+    </div>
+  </nav>
+  <nav class="mobile-nav">
+    <a href="#/home" class="mobile-nav__link">Home</a>
+    <a href="#/browse" class="mobile-nav__link">Browse</a>
+    <a href="#/create-recipe" class="mobile-nav__link">Create Recipe</a>
+    <a href="#/login" class="mobile-nav__link">Login</a>
+  </nav>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer__copyright">Copyright &copy 2019 The Jungle Cook</div>
-      <div class="footer__links">
-        <a href="#" class="footer__links__link">Login</a>
-        <a href="#" class="footer__links__link">Recipes By Category</a>
-        <a href="#" class="footer__links__link">Privacy & Copyright</a>
-        <a href="#" class="footer__links__link">Create Recipe</a>
-        <a href="#" class="footer__links__link">Your Recipes</a>
-      </div>
-      <div class="footer__socials">
-        <img
-          src="img/facebook.svg"
-          alt="facebook"
-          class="footer__socials__icon"
-        />
-        <img
-          src="img/instagram.svg"
-          alt="instagram"
-          class="footer__socials__icon"
-        />
-      </div>
-      <!-- THESE LINK ARE ONLY VISIBLE ON 360PX WIDTH OR LESS -->
-      <div class="footer__links-phone">
-        <a href="#" class="footer__links__link">Login</a>
-        <a href="#" class="footer__links__link">Recipes By Category</a>
-        <a href="#" class="footer__links__link">Privacy & Copyright</a>
-        <a href="#" class="footer__links__link">Create Recipe</a>
-        <a href="#" class="footer__links__link">Your Recipes</a>
-      </div>
-    </footer>
+  <!-- BODY CONTENT -->
+  <!-- LOADED DYNAMICALLY WITH MVC -->
+  <div id="app"></div>
 
-    <!-- FIREBASE SCRIPTS -->
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.1.3/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.1.3/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.1.3/firebase-database-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-firestore-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-functions-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-messaging-compat.js"
-    ></script>
-    <script defer src="/__/firebase/9.1.3/firebase-storage-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-analytics-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-remote-config-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.3/firebase-performance-compat.js"
-    ></script>
-    <!-- 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__copyright">Copyright &copy 2019 The Jungle Cook</div>
+    <div class="footer__links">
+      <a href="#" class="footer__links__link">Login</a>
+      <a href="#" class="footer__links__link">Recipes By Category</a>
+      <a href="#" class="footer__links__link">Privacy & Copyright</a>
+      <a href="#" class="footer__links__link">Create Recipe</a>
+      <a href="#" class="footer__links__link">Your Recipes</a>
+    </div>
+    <div class="footer__socials">
+      <img src="img/facebook.svg" alt="facebook" class="footer__socials__icon" />
+      <img src="img/instagram.svg" alt="instagram" class="footer__socials__icon" />
+    </div>
+    <!-- THESE LINK ARE ONLY VISIBLE ON 360PX WIDTH OR LESS -->
+    <div class="footer__links-phone">
+      <a href="#" class="footer__links__link">Login</a>
+      <a href="#" class="footer__links__link">Recipes By Category</a>
+      <a href="#" class="footer__links__link">Privacy & Copyright</a>
+      <a href="#" class="footer__links__link">Create Recipe</a>
+      <a href="#" class="footer__links__link">Your Recipes</a>
+    </div>
+  </footer>
+
+  <!-- FIREBASE SCRIPTS -->
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/9.1.3/firebase-app-compat.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/9.1.3/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-functions-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-messaging-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-storage-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-analytics-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-remote-config-compat.js"></script>
+  <script defer src="/__/firebase/9.1.3/firebase-performance-compat.js"></script>
+  <!-- 
           initialize the SDK after all desired features are loaded, set useEmulator to false
           to avoid connecting the SDK to running emulators.
         -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <!-- LOCAL SCRIPTS -->
-    <script src="lib/jquery-3.6.0.min.js"></script>
-    <script src="app/model.js"></script>
-    <script src="app/app.js"></script>
-  </body>
+  <!-- LOCAL SCRIPTS -->
+  <script src="lib/jquery-3.6.0.min.js"></script>
+  <script src="app/model.js"></script>
+  <script src="app/app.js"></script>
+</body>
+
 </html>

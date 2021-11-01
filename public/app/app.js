@@ -7,9 +7,27 @@ function initFirebase() {
     if (user) {
       //the user signed in
       console.log("connected");
+
+      //display the logout button
+      $("#logoutNav").css("display", "block");
+
+      //hide the login button
+      $("#loginNav").css("display", "none");
+
+      //display "Your Recipes" in the nav
+      $("#yourRecipes").css("display", "block");
     } else {
       //the user signed out
       console.log("user is not there");
+
+      //display the login button
+      $("#loginNav").css("display", "block");
+
+      //hide the logout button
+      $("#logoutNav").css("display", "none");
+
+      //remove "Your Recipes" in the nav
+      $("#yourRecipes").css("display", "none");
     }
   });
 }
@@ -26,7 +44,7 @@ function route() {
     MODEL.navToPage("home");
   } else {
     //display the page based on the pageId
-    MODEL.navToPage(pageId);
+    MODEL.navToPage(pageId, initAccounts);
   }
 }
 
@@ -58,73 +76,6 @@ function hideNav() {
   }, 700);
 }
 
-//logs an existing user on the firebase into the site
-function login() {
-  console.log("login");
-
-  let email = $("#loginEmail").val();
-  let password = $("#loginPassword").val();
-  // let email = "jesselb1123@gmail.com";
-  // let password = "password";
-
-  firebase
-    .auth() //authorize
-    .signInWithEmailAndPassword(email, password) //sign in the existing user
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log("signed in");
-      // ...
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorMessage);
-    });
-}
-
-//function that initializes listeners for clicks and other changes
-function initListeners() {
-  //run the route function one time when the page is initially opened
-  route();
-
-  //run the route function when the URL after the '#' changes
-  $(window).on("hashchange", route);
-
-  //listen for a link to be clicked
-  $(".nav__links__link").on("click", underlineLink);
-
-  //listen for the hamburger menu to be clicked on
-  $(".nav__hamburger").on("click", showNav);
-
-  //listen for the background of the mobile nav to be clicked on
-  $(".mobile-nav").on("click", hideNav);
-
-  //ACCOUNT-RELATED LISTENERS
-  //listen for the "login" button on the login page to be clicked
-  // $("#login").on("click", login);
-  $("#login").click((e) => {
-    console.log("click");
-    e.preventDefault();
-    let btnID = e.currentTarget.id;
-    // console.log(btnID);
-    if (btnID === "signup") {
-      //create a user
-      createUser();
-    } else if (btnID === "login") {
-      //log user in
-      console.log("click");
-      login();
-    } else if (btnID === "signout") {
-      //sign user out
-      signout();
-    }
-  });
-
-  //listen for the "sign up" button on the login page to be clicked
-  $("#signup").on("click", createUser);
-}
-
 //creates a new user in the firebase
 function createUser() {
   console.log("click");
@@ -150,6 +101,32 @@ function createUser() {
     });
 }
 
+//logs an existing user on the firebase into the site
+function login() {
+  let email = $("#loginEmail").val();
+  let password = $("#loginPassword").val();
+  // let email = "jesselb1123@gmail.com";
+  // let password = "password";
+
+  firebase
+    .auth() //authorize
+    .signInWithEmailAndPassword(email, password) //sign in the existing user
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      // console.log("signed in");
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+
+  //return to the home page
+  route("home");
+}
+
 //function that signs a user out
 function signout() {
   firebase
@@ -157,12 +134,42 @@ function signout() {
     .signOut() //sign a user out
     .then(() => {
       // Sign-out successful.
-      console.log("signed out");
+      // console.log("signed out");
     })
     .catch((error) => {
       // An error happened.
       console.log(error);
     });
+}
+
+//account-related listeners
+function initAccounts() {
+  //listen for the login button to be clicked
+  $("#login").on("click", login);
+
+  //listen for the sign up button to be clicked
+  $("#signup").on("click", createUser);
+
+  //listen for the logout button in the navbar to be clicked
+  $("#logoutNav").on("click", signout);
+}
+
+//function that initializes listeners for clicks and other changes
+function initListeners() {
+  //run the route function one time when the page is initially opened
+  route();
+
+  //run the route function when the URL after the '#' changes
+  $(window).on("hashchange", route);
+
+  //listen for a link to be clicked
+  $(".nav__links__link").on("click", underlineLink);
+
+  //listen for the hamburger menu to be clicked on
+  $(".nav__hamburger").on("click", showNav);
+
+  //listen for the background of the mobile nav to be clicked on
+  $(".mobile-nav").on("click", hideNav);
 }
 
 $(document).ready(function () {
