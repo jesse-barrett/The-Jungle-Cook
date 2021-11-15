@@ -32,6 +32,20 @@ function initFirebase() {
   });
 }
 
+function loadPublicRecipes() {
+  $(".recipes__container").empty();
+  $.getJSON("data/data.json", function (recipes) {
+    $.each(recipes.public, (index, recipe) => {
+      MODEL.showRecipe(
+        recipe.name,
+        recipe.description,
+        recipe.time,
+        recipe.servings
+      );
+    });
+  });
+}
+
 //function that routes to a new page
 function route() {
   //retrieve the desired page destination from the URL
@@ -45,6 +59,9 @@ function route() {
   } else {
     //display the page based on the pageId
     MODEL.navToPage(pageId, initAccounts);
+    if (pageId == "recipes") {
+      loadPublicRecipes();
+    }
   }
 }
 
