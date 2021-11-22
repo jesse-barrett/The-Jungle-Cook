@@ -54,4 +54,8 @@ p {
   font-size: 25px;
   text-decoration: none;
   color: black;
+  transition: transform 0.2s;
+}
+.site-button:hover {
+  transform: scale(1.1);
 }

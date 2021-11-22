@@ -7,14 +7,114 @@
       rgba(167, 232, 189, 0.7)
     ),
     url(../img/recipe-hero.jpg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 150px;
 
   &__header {
     font-family: Caveat;
     font-weight: normal;
     font-size: 25px;
     width: 85%;
+    margin: 0 auto 50px auto;
+  }
+
+  &__container {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    // margin-bottom: 50px;
+
+    &__extra-btns {
+      position: absolute;
+      bottom: -10px;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      &__btn {
+        font-size: 17px;
+        width: 127.66px;
+      }
+    }
+
+    &__card {
+      width: 524px;
+      height: 263px;
+      margin-bottom: 50px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+
+      &__image {
+        width: 300px;
+        height: 100%;
+        // background-image: url(../img/recipe-pizza.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        &__btn {
+          font-size: 20px;
+          width: 127.66px;
+        }
+      }
+
+      &__details {
+        width: 224px;
+        height: 100%;
+        background-color: white;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+
+        &__name {
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+          font-weight: normal;
+          border-bottom: 2px solid black;
+          font-size: 15px;
+        }
+
+        &__description {
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+          font-size: 9px;
+          width: 80%;
+        }
+
+        &__block {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          flex-direction: row;
+          img {
+            width: 23px;
+            height: 23px;
+            margin-right: 10px;
+          }
+
+          p {
+            width: fit-content;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+              sans-serif;
+            margin-bottom: 0;
+            font-size: 10px;
+          }
+        }
+      }
+    }
   }
 }

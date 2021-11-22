@@ -33,17 +33,119 @@ function initFirebase() {
 }
 
 function loadPublicRecipes() {
+  //empty the previous contents of the container
   $(".recipes__container").empty();
+  //load the JSON data from data.json
   $.getJSON("data/data.json", function (recipes) {
-    $.each(recipes.public, (index, recipe) => {
+    //for each object in the private recipe array
+    $.each(recipes.private, (index, recipe) => {
+      //display a card with a recipe's information on it
       MODEL.showRecipe(
+        "private",
+        index,
+        recipe.img,
         recipe.name,
         recipe.description,
         recipe.time,
-        recipe.servings
+        recipe.servings,
+        ".recipes__container"
+      );
+    });
+    //for each object in the public recipe array
+    $.each(recipes.public, (index, recipe) => {
+      //display a card with a recipe's information on it
+      MODEL.showRecipe(
+        "public",
+        index,
+        recipe.img,
+        recipe.name,
+        recipe.description,
+        recipe.time,
+        recipe.servings,
+        ".recipes__container",
+        initRecipeCards
       );
     });
   });
+}
+
+function loadPrivateRecipes() {
+  //empty the previous contents of the container
+  $(".your-recipes__container").empty();
+  //load the JSON data from data.json
+  $.getJSON("data/data.json", function (recipe) {
+    //for each object in the public recipe array
+    $.each(recipe.private, (index, recipe) => {
+      //display a card with a recipe's information on it
+      MODEL.showRecipe(
+        "private",
+        index,
+        recipe.img,
+        recipe.name,
+        recipe.description,
+        recipe.time,
+        recipe.servings,
+        ".your-recipes__container"
+      );
+    });
+  });
+}
+
+function initRecipeCards() {
+  //adds the click listener to every recipe card
+  $(".recipes__container__card").on("click", viewPublicRecipe);
+}
+
+function viewPublicRecipe(event) {
+  //hopefully this will stop the bubbling of my onClick event
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+
+  //store which recipe was clicked on
+  let index = parseInt(event.target.dataset.index);
+  let owner = event.target.dataset.owner;
+
+  //change the URL to the appropriate page
+  //for some reason a tiny timeout was the only way I could get this to work
+  MODEL.navToPage(
+    "view-recipe",
+    setTimeout(() => setViewedRecipe(index, owner), 10)
+  );
+}
+
+function setViewedRecipe(index, owner) {
+  //distinguish between the public and private arrays
+  if (owner === "public") {
+    //load the JSON data from data.json
+    $.getJSON("data/data.json", function (recipe) {
+      let thisRecipe = recipe.public[index];
+      $("#name").html(thisRecipe.name);
+      $(".view-recipe__main__image").css(
+        "background-image",
+        `url(../img/${thisRecipe.img}.jpg)`
+      );
+      $("#description").html(thisRecipe.description);
+      $("#time").html(thisRecipe.time);
+      $("#servings").html(thisRecipe.servings);
+      $("#ingredients").html(thisRecipe.ingredients);
+      $("#instructions").html(thisRecipe.instructions);
+    });
+  } else {
+    //load the JSON data from data.json
+    $.getJSON("data/data.json", function (recipe) {
+      let thisRecipe = recipe.private[index];
+      $("#name").html(thisRecipe.name);
+      $(".view-recipe__main__image").css(
+        "background-image",
+        `url(../img/${thisRecipe.img}.jpg)`
+      );
+      $("#description").html(thisRecipe.description);
+      $("#time").html(thisRecipe.time);
+      $("#servings").html(thisRecipe.servings);
+      $("#ingredients").html(thisRecipe.ingredients);
+      $("#instructions").html(thisRecipe.instructions);
+    });
+  }
 }
 
 //function that routes to a new page
@@ -59,8 +161,16 @@ function route() {
   } else {
     //display the page based on the pageId
     MODEL.navToPage(pageId, initAccounts);
+
+    //if the page is "recipes"
     if (pageId == "recipes") {
+      //load the public recipes
       loadPublicRecipes();
+    }
+    //if the page is "your-recipes"
+    else if (pageId == "your-recipes") {
+      //load the private recipes
+      loadPrivateRecipes();
     }
   }
 }
