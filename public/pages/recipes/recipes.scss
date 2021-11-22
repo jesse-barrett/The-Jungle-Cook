@@ -75,8 +75,9 @@
         &__block {
           display: flex;
           align-items: center;
-          justify-content: space-evenly;
+          justify-content: space-between;
           flex-direction: row;
+          width: 75px;
           img {
             width: 23px;
             height: 23px;
@@ -89,6 +90,49 @@
               sans-serif;
             margin-bottom: 0;
             font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .recipes {
+    &__header {
+      text-align: center;
+    }
+    &__container {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .recipes {
+    padding-bottom: 100px;
+
+    &__container {
+      &__card {
+        flex-direction: column;
+        width: 298.18px;
+
+        &__image {
+          width: 100%;
+          height: 149.37px;
+        }
+
+        &__details {
+          width: 100%;
+          height: 169.37px;
+
+          &__name {
+            font-size: 10px;
+          }
+
+          &__description {
+            font-size: 8px;
           }
         }
       }

@@ -93,3 +93,21 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .create-recipes {
+    &__header {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .create-recipes {
+    &__form {
+      &__button {
+        width: 283px;
+      }
+    }
+  }
+}
